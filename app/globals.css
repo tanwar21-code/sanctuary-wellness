@@ -7,7 +7,7 @@
   --bg-accent: #ede9fe;
   --text-primary: #1e1b4b;
   --text-secondary: #4c4878;
-  --text-muted: #8b85ad;
+  --text-muted: #6b5b8a;
   --lavender: #c4b5fd;
   --lavender-dark: #8b5cf6;
   --sky: #7dd3fc;
@@ -276,6 +276,10 @@ textarea.input-field { resize: vertical; min-height: 100px; }
   box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
 }
 
+.sidebar-link.active span.icon {
+  filter: brightness(0) invert(1);
+}
+
 .sidebar-link svg, .sidebar-link span.icon {
   width: 20px;
   height: 20px;
@@ -344,6 +348,10 @@ textarea.input-field { resize: vertical; min-height: 100px; }
   background: var(--bg-accent);
   transform: scale(1.1);
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+.mood-btn span {
+  color: var(--text-secondary) !important;
 }
 
 /* === CHAT === */
