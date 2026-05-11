@@ -1,5 +1,17 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment Variables
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```env
+DATABASE_URL=your_neon_connection_string_here
+FIREBASE_API_KEY=your_firebase_api_key
+FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+FIREBASE_PROJECT_ID=your_firebase_project_id
+ADMIN_PASSWORD=your_secure_admin_password
+```
+
 ## Getting Started
 
 First, run the development server:
@@ -15,6 +27,12 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Admin Panel
+
+Access the admin panel at `/admin` with:
+- Username: `admin`
+- Password: (set via `ADMIN_PASSWORD` in `.env.local`)
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

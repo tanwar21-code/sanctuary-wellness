@@ -9,10 +9,19 @@ export async function POST(request: NextRequest) {
       return Response.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    // Check if user exists
-    const existing = await sql`SELECT * FROM users WHERE firebase_uid = ${firebase_uid}`;
+    // Check if user exists by email (email is the unique identifier)
+    const existing = await sql`SELECT * FROM users WHERE email = ${email}`;
 
     if (existing.length > 0) {
+      // Update firebase_uid if it's different (user might sign in with different provider)
+      if (existing[0].firebase_uid !== firebase_uid) {
+        await sql`
+          UPDATE users 
+          SET firebase_uid = ${firebase_uid}
+          WHERE email = ${email}
+        `;
+        return Response.json({ user: { ...existing[0], firebase_uid } });
+      }
       return Response.json({ user: existing[0] });
     }
 
