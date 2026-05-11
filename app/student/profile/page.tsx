@@ -45,7 +45,7 @@ export default function ProfilePage() {
       <div className="glass-card" style={{ padding: 28, marginBottom: 24 }}>
         {/* Avatar */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 28 }}>
-          <div onClick={() => fileRef.current?.click()} style={{ width: 80, height: 80, borderRadius: 'var(--radius-full)', background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', cursor: 'pointer', position: 'relative', flexShrink: 0 }}>
+          <div onClick={() => fileRef.current?.click()} style={{ width: 80, height: 80, borderRadius: '0', background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', cursor: 'pointer', position: 'relative', flexShrink: 0 }}>
             {dbUser.profile_image ? <img src={dbUser.profile_image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <span style={{ color: 'white', fontWeight: 700, fontSize: '1.5rem' }}>{dbUser.name?.[0]}</span>}
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0, transition: 'opacity 0.2s' }} onMouseEnter={e => (e.currentTarget.style.opacity = '1')} onMouseLeave={e => (e.currentTarget.style.opacity = '0')}>
               <span style={{ color: 'white', fontSize: '0.7rem', fontWeight: 600 }}>📷 Edit</span>

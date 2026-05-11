@@ -93,12 +93,12 @@ export default function HomePage() {
         background: 'var(--gradient-hero)', position: 'relative', overflow: 'hidden',
         padding: '120px 5% 80px', textAlign: 'center',
       }}>
-        <div style={{ position: 'absolute', width: 400, height: 400, borderRadius: '50%', background: 'rgba(196,181,253,0.25)', top: -100, left: -100, filter: 'blur(80px)', animation: 'float 8s ease-in-out infinite' }} />
-        <div style={{ position: 'absolute', width: 350, height: 350, borderRadius: '50%', background: 'rgba(125,211,252,0.2)', bottom: -80, right: -80, filter: 'blur(70px)', animation: 'float 10s ease-in-out infinite reverse' }} />
-        <div style={{ position: 'absolute', width: 250, height: 250, borderRadius: '50%', background: 'rgba(110,231,183,0.15)', top: '50%', left: '60%', filter: 'blur(60px)', animation: 'float 9s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', width: 400, height: 400, borderRadius: '0', background: 'rgba(196,181,253,0.25)', top: -100, left: -100, filter: 'blur(80px)', animation: 'float 8s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', width: 350, height: 350, borderRadius: '0', background: 'rgba(125,211,252,0.2)', bottom: -80, right: -80, filter: 'blur(70px)', animation: 'float 10s ease-in-out infinite reverse' }} />
+        <div style={{ position: 'absolute', width: 250, height: 250, borderRadius: '0', background: 'rgba(110,231,183,0.15)', top: '50%', left: '60%', filter: 'blur(60px)', animation: 'float 9s ease-in-out infinite' }} />
 
         <div className="animate-slideUp" style={{ maxWidth: 700, position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'inline-block', padding: '8px 20px', borderRadius: 'var(--radius-full)', background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.2)', fontSize: '0.85rem', fontWeight: 600, color: 'var(--lavender-dark)', marginBottom: 24 }}>
+          <div style={{ display: 'inline-block', padding: '8px 20px', borderRadius: '0', background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.2)', fontSize: '0.85rem', fontWeight: 600, color: 'var(--lavender-dark)', marginBottom: 24 }}>
             🌿 Safe Space for Students
           </div>
           <h1 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 800, lineHeight: 1.15, marginBottom: 20, color: 'var(--text-primary)' }}>
@@ -153,7 +153,7 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 32 }}>
             {steps.map((step, i) => (
               <div key={i} style={{ textAlign: 'center' }}>
-                <div style={{ width: 72, height: 72, borderRadius: 20, background: 'var(--gradient-card)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 32 }}>
+                <div style={{ width: 72, height: 72, borderRadius: 0, background: 'var(--gradient-card)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: 32 }}>
                   {step.icon}
                 </div>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--lavender-dark)', marginBottom: 8 }}>STEP {step.num}</div>
@@ -178,7 +178,7 @@ export default function HomePage() {
           </div>
           <div className="glass-card" style={{ maxWidth: 550, margin: '0 auto', padding: 0, overflow: 'hidden' }}>
             <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🧠</div>
+              <div style={{ width: 36, height: 36, borderRadius: 0, background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🧠</div>
               <div>
                 <div style={{ fontWeight: 700, fontSize: '0.9rem' }}>Sanctuary AI</div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--mint-dark)' }}>● Online</div>
@@ -193,7 +193,7 @@ export default function HomePage() {
             </div>
             <div style={{ padding: '12px 20px', borderTop: '1px solid var(--border-light)', display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {prompts.map((p, i) => (
-                <span key={i} style={{ padding: '6px 14px', borderRadius: 'var(--radius-full)', background: 'var(--bg-accent)', fontSize: '0.8rem', fontWeight: 500, color: 'var(--lavender-dark)' }}>{p}</span>
+                <span key={i} style={{ padding: '6px 14px', borderRadius: '0', background: 'var(--bg-accent)', fontSize: '0.8rem', fontWeight: 500, color: 'var(--lavender-dark)' }}>{p}</span>
               ))}
             </div>
           </div>
@@ -258,7 +258,7 @@ export default function HomePage() {
         padding: '100px 5%', textAlign: 'center', position: 'relative', overflow: 'hidden',
         background: 'linear-gradient(135deg, #8b5cf6 0%, #0ea5e9 50%, #10b981 100%)',
       }}>
-        <div style={{ position: 'absolute', width: 300, height: 300, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', top: -100, right: -50, filter: 'blur(60px)' }} />
+        <div style={{ position: 'absolute', width: 300, height: 300, borderRadius: '0', background: 'rgba(255,255,255,0.1)', top: -100, right: -50, filter: 'blur(60px)' }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 800, color: 'white', marginBottom: 16 }}>
             Your Mental Health Matters.
@@ -267,10 +267,10 @@ export default function HomePage() {
             Take the first step toward feeling better. We&apos;re here for you.
           </p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href={dashLink} style={{ background: 'white', color: '#8b5cf6', border: 'none', padding: '14px 32px', borderRadius: 'var(--radius-full)', fontWeight: 700, fontSize: '1rem', textDecoration: 'none', display: 'inline-block', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}>
+            <Link href={dashLink} style={{ background: 'white', color: '#8b5cf6', border: 'none', padding: '14px 32px', borderRadius: '0', fontWeight: 700, fontSize: '1rem', textDecoration: 'none', display: 'inline-block', boxShadow: 'none' }}>
               Get Started ✨
             </Link>
-            <Link href={dashLink} style={{ background: 'rgba(255,255,255,0.15)', color: 'white', border: '1.5px solid rgba(255,255,255,0.3)', padding: '14px 32px', borderRadius: 'var(--radius-full)', fontWeight: 600, fontSize: '1rem', textDecoration: 'none', backdropFilter: 'blur(8px)' }}>
+            <Link href={dashLink} style={{ background: 'rgba(255,255,255,0.15)', color: 'white', border: '1.5px solid rgba(255,255,255,0.3)', padding: '14px 32px', borderRadius: '0', fontWeight: 600, fontSize: '1rem', textDecoration: 'none', backdropFilter: 'blur(8px)' }}>
               Talk to AI
             </Link>
           </div>

@@ -48,7 +48,7 @@ export default function CounsellorResourceViewPage({ params }: { params: Promise
               return (
                 <Link key={r.id} href={`/counsellor/resources/${r.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 10 }}>
                   <div className="glass-card" style={{ padding: 12, display: 'flex', gap: 10 }}>
-                    {r.type === 'video' && vid && <img src={getThumbnailUrl(vid)} alt="" style={{ width: 80, height: 50, objectFit: 'cover', borderRadius: 6 }} />}
+                    {r.type === 'video' && vid && <img src={getThumbnailUrl(vid)} alt="" style={{ width: 80, height: 50, objectFit: 'cover', borderRadius: 0 }} />}
                     <div><h4 style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)' }}>{r.title}</h4></div>
                   </div>
                 </Link>

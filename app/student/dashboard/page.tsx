@@ -72,7 +72,7 @@ export default function StudentDashboard() {
         {quickActions.map((a, i) => (
           <Link key={i} href={a.href} style={{ textDecoration: 'none' }}>
             <div className="glass-card" style={{ padding: 24, cursor: 'pointer' }}>
-              <div style={{ width: 48, height: 48, borderRadius: 14, background: a.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 12, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
+              <div style={{ width: 48, height: 48, borderRadius: 0, background: a.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 12, boxShadow: 'none' }}>
                 {a.icon}
               </div>
               <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 4, color: 'var(--text-primary)' }}>{a.title}</h3>
@@ -86,13 +86,13 @@ export default function StudentDashboard() {
         {/* AI Companion */}
         <div className="glass-card" style={{ padding: 24 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-            <div style={{ width: 40, height: 40, borderRadius: 12, background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>🧠</div>
+            <div style={{ width: 40, height: 40, borderRadius: 0, background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>🧠</div>
             <div>
               <h3 style={{ fontSize: '0.95rem', fontWeight: 700 }}>AI Companion</h3>
               <span style={{ fontSize: '0.75rem', color: 'var(--mint-dark)' }}>● Available</span>
             </div>
           </div>
-          <div style={{ background: 'var(--bg-accent)', borderRadius: 'var(--radius-md)', padding: 14, marginBottom: 16 }}>
+          <div style={{ background: 'var(--bg-accent)', borderRadius: '0', padding: 14, marginBottom: 16 }}>
             <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
               {selectedMood === 'stressed' || selectedMood === 'overwhelmed' || selectedMood === 'sad'
                 ? "It seems like you're going through a tough time. Want to talk about it? 💙"

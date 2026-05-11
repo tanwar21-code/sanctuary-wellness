@@ -18,24 +18,73 @@ export default function CounsellorsPage() {
   const [contactNumber, setContactNumber] = useState('');
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [requests, setRequests] = useState<Record<string, any>>({});
 
   useEffect(() => {
     fetch('/api/counsellors').then(r => r.json()).then(d => { setCounsellors(d.counsellors || []); setLoading(false); }).catch(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    if (dbUser?.id) {
+      fetch(`/api/requests?studentId=${dbUser.id}`)
+        .then(r => r.json())
+        .then(d => {
+          const reqMap: Record<string, any> = {};
+          d.requests?.forEach((req: any) => {
+            reqMap[req.counsellor_id] = req;
+          });
+          setRequests(reqMap);
+        })
+        .catch(() => {});
+    }
+  }, [dbUser]);
+
+  // Check for expired requests every minute
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      setRequests(prev => {
+        const updated: Record<string, any> = {};
+        Object.entries(prev).forEach(([counsellorId, req]) => {
+          const createdAt = new Date(req.created_at);
+          const hoursPassed = (now.getTime() - createdAt.getTime()) / (1000 * 60 * 60);
+          if (hoursPassed < 6) {
+            updated[counsellorId] = req;
+          }
+        });
+        return updated;
+      });
+    }, 60000); // Check every minute
+
+    return () => clearInterval(interval);
   }, []);
 
   const requestCall = async () => {
     if (!dbUser || !selectedCounsellor || !message || !contactNumber) return;
     setSending(true);
     try {
-      await fetch('/api/requests', {
+      const res = await fetch('/api/requests', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ student_id: dbUser.id, counsellor_id: selectedCounsellor.id, message, contact_number: contactNumber }),
       });
+      const data = await res.json();
       setSent(true);
+      // Refresh requests after sending
+      if (data.request) {
+        setRequests(prev => ({ ...prev, [selectedCounsellor.id]: data.request }));
+      }
       setTimeout(() => { setShowModal(false); setSent(false); setMessage(''); setContactNumber(''); }, 2000);
     } catch {}
     setSending(false);
+  };
+
+  const getButtonState = (counsellorId: string) => {
+    const request = requests[counsellorId];
+    if (!request) return 'request';
+    if (request.status === 'accepted') return 'accepted';
+    if (request.status === 'pending') return 'requested';
+    return 'request';
   };
 
   if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
@@ -56,7 +105,7 @@ export default function CounsellorsPage() {
           {counsellors.map(c => (
             <div key={c.id} className="glass-card" style={{ padding: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
-                <div style={{ width: 56, height: 56, borderRadius: 'var(--radius-full)', background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 }}>
+                <div style={{ width: 56, height: 56, borderRadius: '0', background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 }}>
                   {c.profile_image ? <img src={c.profile_image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <span style={{ color: 'white', fontWeight: 700, fontSize: '1.2rem' }}>{c.name[0]}</span>}
                 </div>
                 <div>
@@ -70,9 +119,28 @@ export default function CounsellorsPage() {
                 {c.experience > 0 && <span>📅 {c.experience} yrs exp</span>}
                 {c.availability && <span>🕐 {c.availability}</span>}
               </div>
-              <button onClick={() => { setSelectedCounsellor(c); setShowModal(true); }} className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.9rem', padding: '10px 20px' }}>
-                Request a Call
-              </button>
+              {(() => {
+                const buttonState = getButtonState(c.id);
+                if (buttonState === 'requested') {
+                  return (
+                    <button disabled className="btn-secondary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.9rem', padding: '10px 20px', opacity: 0.7 }}>
+                      Requested
+                    </button>
+                  );
+                } else if (buttonState === 'accepted') {
+                  return (
+                    <button disabled className="btn-success" style={{ width: '100%', justifyContent: 'center', fontSize: '0.9rem', padding: '10px 20px' }}>
+                      Accepted
+                    </button>
+                  );
+                } else {
+                  return (
+                    <button onClick={() => { setSelectedCounsellor(c); setShowModal(true); }} className="btn-primary" style={{ width: '100%', justifyContent: 'center', fontSize: '0.9rem', padding: '10px 20px' }}>
+                      Request a Call
+                    </button>
+                  );
+                }
+              })()}
             </div>
           ))}
         </div>

@@ -30,17 +30,17 @@ export default function LoginPage() {
     }}>
       {/* Floating blobs */}
       <div style={{
-        position: 'absolute', width: 300, height: 300, borderRadius: '50%',
+        position: 'absolute', width: 300, height: 300, borderRadius: '0',
         background: 'rgba(196,181,253,0.3)', top: -80, left: -80,
         filter: 'blur(60px)', animation: 'float 6s ease-in-out infinite',
       }} />
       <div style={{
-        position: 'absolute', width: 250, height: 250, borderRadius: '50%',
+        position: 'absolute', width: 250, height: 250, borderRadius: '0',
         background: 'rgba(125,211,252,0.3)', bottom: -60, right: -60,
         filter: 'blur(60px)', animation: 'float 8s ease-in-out infinite reverse',
       }} />
       <div style={{
-        position: 'absolute', width: 200, height: 200, borderRadius: '50%',
+        position: 'absolute', width: 200, height: 200, borderRadius: '0',
         background: 'rgba(110,231,183,0.2)', top: '40%', right: '20%',
         filter: 'blur(50px)', animation: 'float 7s ease-in-out infinite',
       }} />
@@ -51,7 +51,7 @@ export default function LoginPage() {
       }}>
         {/* Logo */}
         <div style={{
-          width: 72, height: 72, borderRadius: 20,
+          width: 72, height: 72, borderRadius: 0,
           background: 'linear-gradient(135deg, #8b5cf6, #0ea5e9)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           margin: '0 auto 24px', fontSize: 36,

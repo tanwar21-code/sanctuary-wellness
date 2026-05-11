@@ -89,7 +89,7 @@ export default function MoodTrackerPage() {
                 return (
                   <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                     <span style={{ fontSize: '1.2rem' }}>{moodEmoji(e.mood)}</span>
-                    <div style={{ width: '100%', maxWidth: 40, height: `${height}%`, borderRadius: 'var(--radius-md)', background: moodColor(e.mood), transition: 'height 0.5s ease', minHeight: 8 }} />
+                    <div style={{ width: '100%', maxWidth: 40, height: `${height}%`, borderRadius: '0', background: moodColor(e.mood), transition: 'height 0.5s ease', minHeight: 8 }} />
                     <span style={{ fontSize: '0.6rem', color: 'var(--text-muted)' }}>{new Date(e.created_at).toLocaleDateString('en', { weekday: 'short' })}</span>
                   </div>
                 );
@@ -106,7 +106,7 @@ export default function MoodTrackerPage() {
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxHeight: 300, overflowY: 'auto' }}>
               {entries.slice(0, 15).map((e, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 12px', borderRadius: 'var(--radius-md)', background: i % 2 === 0 ? 'var(--bg-accent)' : 'transparent' }}>
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 12px', borderRadius: '0', background: i % 2 === 0 ? 'var(--bg-accent)' : 'transparent' }}>
                   <span style={{ fontSize: '1.3rem' }}>{moodEmoji(e.mood)}</span>
                   <div style={{ flex: 1 }}>
                     <span style={{ fontSize: '0.85rem', fontWeight: 600, textTransform: 'capitalize' }}>{e.mood}</span>

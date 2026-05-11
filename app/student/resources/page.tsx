@@ -41,7 +41,7 @@ export default function ResourcesPage() {
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 24, flexWrap: 'wrap' }}>
         {categories.map(c => (
-          <button key={c} onClick={() => setCatFilter(c)} style={{ padding: '6px 14px', borderRadius: 'var(--radius-full)', background: catFilter === c ? 'var(--lavender-dark)' : 'var(--bg-accent)', color: catFilter === c ? 'white' : 'var(--text-secondary)', border: 'none', fontSize: '0.8rem', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s' }}>
+          <button key={c} onClick={() => setCatFilter(c)} style={{ padding: '6px 14px', borderRadius: '0', background: catFilter === c ? 'var(--lavender-dark)' : 'var(--bg-accent)', color: catFilter === c ? 'white' : 'var(--text-secondary)', border: 'none', fontSize: '0.8rem', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s' }}>
             {c}
           </button>
         ))}
@@ -64,7 +64,7 @@ export default function ResourcesPage() {
                   {r.type === 'video' && thumb && (
                     <div style={{ position: 'relative', paddingTop: '56.25%', background: '#000' }}>
                       <img src={thumb} alt={r.title} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 48, height: 48, borderRadius: '50%', background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: 20 }}>▶</div>
+                      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 48, height: 48, borderRadius: '0', background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: 20 }}>▶</div>
                     </div>
                   )}
                   <div style={{ padding: 20 }}>
