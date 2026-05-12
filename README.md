@@ -1,54 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌿 Sanctuary Wellness
 
-## Environment Variables
+Welcome to **Sanctuary**, a premium mental health and wellness platform designed to bridge the gap between students seeking emotional support and professional counsellors ready to help.
 
-Create a `.env.local` file in the root directory with the following variables:
+🌐 **Live Demo:** [sanctuary-wellness-seven.vercel.app](https://sanctuary-wellness-seven.vercel.app)
 
-```env
-DATABASE_URL=your_neon_connection_string_here
-FIREBASE_API_KEY=your_firebase_api_key
-FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
-FIREBASE_PROJECT_ID=your_firebase_project_id
-ADMIN_PASSWORD=your_secure_admin_password
-```
+---
 
-## Getting Started
+## ✨ Features
 
-First, run the development server:
+### For Students
+*   **🧠 Sanctuary AI Companion:** An empathetic AI chatbot available 24/7 to listen and provide immediate support (powered by HuggingFace).
+*   **📊 Interactive Mood Tracker:** Log your daily moods, add journal notes, and visualize your emotional rhythm over 30-day analytics charts.
+*   **🌬️ Guided Breathing:** Integrated 4-7-8 breathing exercises to help manage acute stress and anxiety.
+*   **👨‍⚕️ Counsellor Matching:** Browse verified professionals, view their specializations, and request calls seamlessly.
+*   **📚 Resource Library:** Explore a curated collection of mental health articles and YouTube video resources tailored to topics like Stress, Anxiety, and Motivation.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### For Counsellors
+*   **📥 Request Inbox:** Efficiently manage incoming support requests from students.
+*   **📅 Schedule Management:** Set and easily modify your availability slots.
+*   **🤝 Session Tracking:** Keep track of accepted, pending, and completed student sessions.
+*   **📖 Resource Curation:** Upload and share helpful articles and videos directly to the student portal.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🎨 UX & Design Philosophy
+Sanctuary prioritizes a calming, premium user experience.
+*   **Modern Aesthetics:** Utilizes a soothing Sage, Olive, and Lavender color palette with a glassmorphism design system.
+*   **Fluid Animations:** Highly optimized CSS staggered entrance animations and smooth transitions.
+*   **Skeleton Loading:** Native skeleton placeholders prevent layout shifts during data fetching for a frictionless experience.
+*   **Mobile-First:** Fully responsive design with intuitive bottom-tab navigation for mobile users.
 
-## Admin Panel
+---
 
-Access the admin panel at `/admin` with:
-- Username: `admin`
-- Password: (set via `ADMIN_PASSWORD` in `.env.local`)
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+*   **Framework:** Next.js (App Router)
+*   **Language:** TypeScript
+*   **Styling:** Modern CSS Modules / Variables (No Tailwind reliance)
+*   **AI Integration:** HuggingFace Inference API (`deepseek-ai` / `Ling-2.6-1T`)
+*   **Database / Auth:** PostgreSQL (Supabase / Neon)
+*   **Hosting:** Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚀 Getting Started Locally
 
-To learn more about Next.js, take a look at the following resources:
+### Prerequisites
+Make sure you have Node.js installed on your machine.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/sanctuary-wellness.git
+   cd sanctuary-wellness
+   ```
 
-## Deploy on Vercel
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Environment Variables:**
+   Create a `.env.local` file in the root directory and add the necessary API keys:
+   ```env
+   # Example
+   HUGGINGFACE_API_KEY=your_huggingface_token
+   # Add your database/auth URIs here
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
+
+---
+
+## 🤝 Contributing
+Contributions are welcome! Feel free to open issues or submit pull requests for bug fixes, new features, or design improvements.
+
+## 📄 License
+This project is licensed under the MIT License.
