@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect } from 'react';
 
@@ -27,7 +28,7 @@ export default function SessionsPage() {
     completed: requests.filter(r => r.status === 'completed'),
   };
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="animate-fadeIn">
@@ -39,18 +40,18 @@ export default function SessionsPage() {
             <span className={`badge badge-${status}`}>{status}</span> ({items.length})
           </h3>
           {items.length === 0 ? (
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>No {status} sessions.</p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }} className="animate-slideUp">No {status} sessions.</p>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 16 }}>
-              {items.map(r => (
-                <div key={r.id} className="glass-card" style={{ padding: 20 }}>
+              {items.map((r, index) => (
+                <div key={r.id} className={`glass-card animate-slideUp stagger-${(index % 10) + 1}`} style={{ padding: 20 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
                     <h4 style={{ fontWeight: 700, fontSize: '0.95rem' }}>{r.student_name || 'Student'}</h4>
                     <span className={`badge badge-${r.status}`}>{r.status}</span>
                   </div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 8, lineHeight: 1.5 }}>{r.message}</p>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: 12 }}>📞 {r.contact_number} · {new Date(r.created_at).toLocaleDateString()}</p>
-                  {status === 'accepted' && <button onClick={() => updateStatus(r.id, 'completed')} className="btn-success" style={{ fontSize: '0.85rem', padding: '8px 16px' }}>✓ Complete</button>}
+                  {status === 'accepted' && <button onClick={() => updateStatus(r.id, 'completed')} className="btn-success" style={{ fontSize: '0.85rem', padding: '8px 16px', borderRadius: 'var(--radius-full)' }}>✓ Complete</button>}
                 </div>
               ))}
             </div>

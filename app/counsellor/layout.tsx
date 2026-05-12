@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -39,7 +40,7 @@ export default function CounsellorLayout({ children }: { children: React.ReactNo
     }
   }, [dbUser]);
 
-  if (loading || !dbUser) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading || !dbUser) return <Loader />;
 
   const isTabActive = (href: string) => pathname === href;
 

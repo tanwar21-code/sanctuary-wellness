@@ -2,6 +2,7 @@
 
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect, useRef } from 'react';
+import Loader from '@/components/Loader';
 
 const suggestedPrompts = ['I feel lonely', "I can't focus on studies", "I'm burned out", 'I feel anxious about exams', 'I need motivation', "I'm having trouble sleeping"];
 
@@ -67,7 +68,7 @@ export default function AISupportPage() {
       <div className="glass-card" style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden' }}>
         {/* Header */}
         <div style={{ padding: '14px 20px', borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 40, height: 40, borderRadius: 0, background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>🧠</div>
+          <div style={{ width: 40, height: 40, borderRadius: 'var(--radius-full)', background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>🧠</div>
           <div>
             <div style={{ fontWeight: 700, fontSize: '0.95rem' }}>Sanctuary AI</div>
             <div style={{ fontSize: '0.75rem', color: 'var(--mint-dark)' }}>● Online — Here to listen</div>
@@ -77,15 +78,15 @@ export default function AISupportPage() {
         {/* Messages */}
         <div className="chat-messages" style={{ flex: 1, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
           {loadingHistory ? (
-            <div className="loading-container"><div className="loading-spinner" /></div>
+            <Loader />
           ) : messages.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--text-muted)' }}>
+            <div className="animate-fadeIn" style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--text-muted)' }}>
               <div style={{ fontSize: '3rem', marginBottom: 16 }}>💬</div>
               <h3 style={{ fontWeight: 700, marginBottom: 8, color: 'var(--text-primary)' }}>Start a Conversation</h3>
               <p style={{ fontSize: '0.9rem', marginBottom: 24 }}>I&apos;m here to listen and support you.</p>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
                 {suggestedPrompts.map((p, i) => (
-                  <button key={i} onClick={() => sendMessage(p)} style={{ padding: '8px 16px', borderRadius: '0', background: 'var(--bg-accent)', border: '1px solid var(--border-light)', fontSize: '0.85rem', fontWeight: 500, color: 'var(--lavender-dark)', cursor: 'pointer', transition: 'all 0.2s' }}>
+                  <button key={i} onClick={() => sendMessage(p)} className={`animate-slideUp stagger-${(i % 10) + 1}`} style={{ padding: '8px 16px', borderRadius: 'var(--radius-full)', background: 'var(--bg-accent)', border: '1px solid var(--border-light)', fontSize: '0.85rem', fontWeight: 500, color: 'var(--sage-dark)', cursor: 'pointer', transition: 'all 0.2s' }}>
                     {p}
                   </button>
                 ))}
@@ -94,7 +95,7 @@ export default function AISupportPage() {
           ) : (
             <>
               {messages.map((msg, i) => (
-                <div key={i}>
+                <div key={i} className="animate-slideUp">
                   <div className="chat-bubble user">{msg.user_message}</div>
                   {msg.ai_response && (
                     <div className="chat-bubble ai" style={{ marginTop: 8, whiteSpace: 'pre-wrap' }}>{msg.ai_response}</div>
@@ -115,8 +116,8 @@ export default function AISupportPage() {
 
         {/* Input */}
         <div className="chat-input-area">
-          <textarea value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Type your message..." rows={1} style={{ flex: 1, resize: 'none', border: '1.5px solid var(--border-light)', borderRadius: '0', padding: '12px 16px', fontFamily: 'Inter, sans-serif', fontSize: '0.95rem', outline: 'none', maxHeight: 120 }} />
-          <button onClick={() => sendMessage()} disabled={!input.trim() || loading} className="btn-primary" style={{ padding: '12px 20px', opacity: !input.trim() || loading ? 0.5 : 1 }}>
+          <textarea value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown} placeholder="Type your message..." rows={1} style={{ flex: 1, resize: 'none', border: '1.5px solid var(--border-light)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', fontFamily: 'Inter, sans-serif', fontSize: '0.95rem', outline: 'none', maxHeight: 120 }} />
+          <button onClick={() => sendMessage()} disabled={!input.trim() || loading} className="btn-primary" style={{ padding: '12px 20px', borderRadius: 'var(--radius-full)', opacity: !input.trim() || loading ? 0.5 : 1 }}>
             Send
           </button>
         </div>

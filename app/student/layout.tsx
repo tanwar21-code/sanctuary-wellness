@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -40,7 +41,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
   }, [dbUser]);
 
   if (loading || !dbUser) {
-    return <div className="loading-container"><div className="loading-spinner" /></div>;
+    return <Loader />;
   }
 
   const isTabActive = (href: string) => pathname === href;

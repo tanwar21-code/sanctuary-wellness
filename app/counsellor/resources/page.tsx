@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -52,7 +53,7 @@ export default function CounsellorResourcesPage() {
     setShowForm(true);
   };
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="animate-fadeIn">

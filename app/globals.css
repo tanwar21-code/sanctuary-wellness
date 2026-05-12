@@ -478,10 +478,27 @@ textarea.input-field { resize: vertical; min-height: 100px; }
 .animate-float { animation: float 3s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
 
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
+.stagger-1 { animation-delay: 0.1s; animation-fill-mode: both; }
+.stagger-2 { animation-delay: 0.2s; animation-fill-mode: both; }
+.stagger-3 { animation-delay: 0.3s; animation-fill-mode: both; }
+.stagger-4 { animation-delay: 0.4s; animation-fill-mode: both; }
+.stagger-5 { animation-delay: 0.5s; animation-fill-mode: both; }
+.stagger-6 { animation-delay: 0.6s; animation-fill-mode: both; }
+.stagger-7 { animation-delay: 0.7s; animation-fill-mode: both; }
+.stagger-8 { animation-delay: 0.8s; animation-fill-mode: both; }
+.stagger-9 { animation-delay: 0.9s; animation-fill-mode: both; }
+.stagger-10 { animation-delay: 1.0s; animation-fill-mode: both; }
+
+@keyframes skeletonPulse {
+  0% { background-color: rgba(91, 117, 83, 0.1); }
+  50% { background-color: rgba(91, 117, 83, 0.2); }
+  100% { background-color: rgba(91, 117, 83, 0.1); }
+}
+
+.skeleton-pulse {
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
 
 /* === MODAL === */
 .modal-overlay {

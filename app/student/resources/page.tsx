@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { extractVideoId, getThumbnailUrl } from '@/lib/youtube';
@@ -24,7 +25,7 @@ export default function ResourcesPage() {
     return true;
   });
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="animate-fadeIn">
@@ -41,35 +42,35 @@ export default function ResourcesPage() {
       </div>
       <div style={{ display: 'flex', gap: 8, marginBottom: 24, flexWrap: 'wrap' }}>
         {categories.map(c => (
-          <button key={c} onClick={() => setCatFilter(c)} style={{ padding: '6px 14px', borderRadius: '0', background: catFilter === c ? 'var(--lavender-dark)' : 'var(--bg-accent)', color: catFilter === c ? 'white' : 'var(--text-secondary)', border: 'none', fontSize: '0.8rem', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s' }}>
+          <button key={c} onClick={() => setCatFilter(c)} style={{ padding: '6px 14px', borderRadius: 'var(--radius-full)', background: catFilter === c ? 'var(--sage-dark)' : 'var(--bg-accent)', color: catFilter === c ? 'white' : 'var(--text-secondary)', border: 'none', fontSize: '0.8rem', fontWeight: 500, cursor: 'pointer', transition: 'all 0.2s' }}>
             {c}
           </button>
         ))}
       </div>
 
       {filtered.length === 0 ? (
-        <div className="glass-card" style={{ padding: 48, textAlign: 'center' }}>
+        <div className="glass-card animate-slideUp" style={{ padding: 48, textAlign: 'center' }}>
           <div style={{ fontSize: '3rem', marginBottom: 16 }}>📚</div>
           <h3 style={{ fontWeight: 700, marginBottom: 8 }}>No Resources Yet</h3>
           <p style={{ color: 'var(--text-muted)' }}>Resources will be added by counsellors soon.</p>
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
-          {filtered.map(r => {
+          {filtered.map((r, index) => {
             const videoId = r.youtube_url ? extractVideoId(r.youtube_url) : null;
             const thumb = r.thumbnail_url || (videoId ? getThumbnailUrl(videoId) : null);
             return (
-              <Link key={r.id} href={`/student/resources/${r.id}`} style={{ textDecoration: 'none' }}>
-                <div className="glass-card" style={{ padding: 0, overflow: 'hidden', cursor: 'pointer' }}>
+              <Link key={r.id} href={`/student/resources/${r.id}`} className={`animate-slideUp stagger-${(index % 10) + 1}`} style={{ textDecoration: 'none' }}>
+                <div className="glass-card" style={{ padding: 0, overflow: 'hidden', cursor: 'pointer', height: '100%' }}>
                   {r.type === 'video' && thumb && (
                     <div style={{ position: 'relative', paddingTop: '56.25%', background: '#000' }}>
-                      <img src={thumb} alt={r.title} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 48, height: 48, borderRadius: '0', background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: 20 }}>▶</div>
+                      <img src={thumb} alt={r.title} loading="lazy" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 48, height: 48, borderRadius: 'var(--radius-full)', background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontSize: 20 }}>▶</div>
                     </div>
                   )}
                   <div style={{ padding: 20 }}>
                     <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-                      <span className="badge" style={{ background: r.type === 'video' ? '#dbeafe' : '#ede9fe', color: r.type === 'video' ? '#1e40af' : '#6d28d9', fontSize: '0.7rem' }}>
+                      <span className="badge" style={{ background: r.type === 'video' ? '#dbeafe' : 'var(--sage-light)', color: r.type === 'video' ? '#1e40af' : 'var(--sage-dark)', fontSize: '0.7rem' }}>
                         {r.type === 'video' ? '🎥 Video' : '📝 Article'}
                       </span>
                       {r.category && <span className="badge" style={{ background: '#f0fdf4', color: '#166534', fontSize: '0.7rem' }}>{r.category}</span>}

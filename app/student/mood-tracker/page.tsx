@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect, useMemo } from 'react';
 
@@ -113,7 +114,7 @@ export default function MoodTrackerPage() {
     return result;
   }, [entries]);
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="animate-fadeIn" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -160,7 +161,7 @@ export default function MoodTrackerPage() {
       )}
 
       {/* This Week */}
-      <div className="glass-card" style={{ padding: 24 }}>
+      <div className="glass-card animate-slideUp stagger-1" style={{ padding: 24 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
           <div>
             <h3 style={{ fontSize: '1rem', fontWeight: 700 }}>This Week</h3>
@@ -170,7 +171,7 @@ export default function MoodTrackerPage() {
         </div>
         <div className="week-mood-row" style={{ marginTop: 16 }}>
           {weeklyMoods.map((d, i) => (
-            <div key={i} className="day-item">
+            <div key={i} className={`day-item animate-slideUp stagger-${(i % 10) + 1}`}>
               <span className="day-label">{d.day}</span>
               <div className={`day-emoji ${d.isToday ? 'today' : ''}`}>
                 {d.emoji || '·'}
@@ -182,7 +183,7 @@ export default function MoodTrackerPage() {
 
       {/* Insight */}
       {insights && (
-        <div className="glass-card" style={{ padding: 24 }}>
+        <div className="glass-card animate-slideUp stagger-2" style={{ padding: 24 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
             <div style={{ width: 36, height: 36, borderRadius: 'var(--radius-full)', background: 'var(--bg-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="var(--sage-dark)" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
@@ -195,9 +196,9 @@ export default function MoodTrackerPage() {
             <span style={{ fontSize: '0.8rem', color: 'var(--sage-dark)', fontWeight: 600, background: 'var(--bg-accent)', padding: '4px 12px', borderRadius: 'var(--radius-full)' }}>{insights.totalEntries} entries</span>
           </div>
           <div className="insight-progress" style={{ marginBottom: 12 }}>
-            <div className="segment positive" style={{ width: `${insights.positivePercent}%` }} />
-            <div className="segment neutral" style={{ width: `${insights.neutralPercent}%` }} />
-            <div className="segment low" style={{ width: `${insights.lowPercent}%` }} />
+            <div className="segment positive animate-slideUp stagger-3" style={{ width: `${insights.positivePercent}%` }} />
+            <div className="segment neutral animate-slideUp stagger-4" style={{ width: `${insights.neutralPercent}%` }} />
+            <div className="segment low animate-slideUp stagger-5" style={{ width: `${insights.lowPercent}%` }} />
           </div>
           <div style={{ display: 'flex', gap: 20, fontSize: '0.75rem' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -217,12 +218,12 @@ export default function MoodTrackerPage() {
       )}
 
       {/* Last 30 Days */}
-      <div className="glass-card" style={{ padding: 24 }}>
+      <div className="glass-card animate-slideUp stagger-6" style={{ padding: 24 }}>
         <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 4 }}>Last 30 Days</h3>
         <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: 16 }}>The ebb and flow of your month.</p>
         <div className="mood-bar-chart">
           {last30Days.map((d, i) => (
-            <div key={i} className="bar-wrapper">
+            <div key={i} className={`bar-wrapper animate-slideUp stagger-${(i % 5) + 1}`}>
               <div
                 className="bar"
                 style={{
@@ -241,7 +242,7 @@ export default function MoodTrackerPage() {
       </div>
 
       {/* Recent Entries */}
-      <div className="glass-card" style={{ padding: 24 }}>
+      <div className="glass-card animate-slideUp stagger-7" style={{ padding: 24 }}>
         <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 16 }}>📋 Recent Entries</h3>
         {entries.length === 0 ? (
           <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>No entries yet. Start logging your mood!</p>

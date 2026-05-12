@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect } from 'react';
 
@@ -87,7 +88,7 @@ export default function CounsellorsPage() {
     return 'request';
   };
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="animate-fadeIn">
@@ -102,10 +103,10 @@ export default function CounsellorsPage() {
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 20 }}>
-          {counsellors.map(c => (
-            <div key={c.id} className="glass-card" style={{ padding: 24 }}>
+          {counsellors.map((c, index) => (
+            <div key={c.id} className={`glass-card animate-slideUp stagger-${(index % 10) + 1}`} style={{ padding: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
-                <div style={{ width: 56, height: 56, borderRadius: '0', background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 }}>
+                <div style={{ width: 56, height: 56, borderRadius: 'var(--radius-full)', background: 'var(--gradient-cta)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 }}>
                   {c.profile_image ? <img src={c.profile_image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <span style={{ color: 'white', fontWeight: 700, fontSize: '1.2rem' }}>{c.name[0]}</span>}
                 </div>
                 <div>
@@ -113,7 +114,7 @@ export default function CounsellorsPage() {
                   <span className="badge badge-accepted" style={{ fontSize: '0.7rem' }}>✓ Verified</span>
                 </div>
               </div>
-              {c.specialization && <div style={{ marginBottom: 8 }}><span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--lavender-dark)' }}>🎯 {c.specialization}</span></div>}
+              {c.specialization && <div style={{ marginBottom: 8 }}><span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--sage-dark)' }}>🎯 {c.specialization}</span></div>}
               {c.bio && <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: 12 }}>{c.bio}</p>}
               <div style={{ display: 'flex', gap: 12, fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: 16 }}>
                 {c.experience > 0 && <span>📅 {c.experience} yrs exp</span>}

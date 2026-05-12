@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect } from 'react';
 
@@ -26,7 +27,7 @@ export default function NotificationsPage() {
     if (unreadIds.length > 0) markRead(unreadIds);
   };
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="animate-fadeIn">

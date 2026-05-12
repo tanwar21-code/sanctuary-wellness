@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect } from 'react';
 
@@ -26,7 +27,7 @@ export default function InboxPage() {
 
   const filtered = filter === 'all' ? requests : requests.filter(r => r.status === filter);
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="animate-fadeIn">
@@ -46,13 +47,13 @@ export default function InboxPage() {
         {/* List */}
         <div className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
           {filtered.length === 0 ? (
-            <div style={{ padding: 48, textAlign: 'center' }}>
+            <div className="animate-slideUp" style={{ padding: 48, textAlign: 'center' }}>
               <div style={{ fontSize: '3rem', marginBottom: 16 }}>📥</div>
               <h3 style={{ fontWeight: 700 }}>No Requests</h3>
             </div>
           ) : (
-            filtered.map(r => (
-              <div key={r.id} onClick={() => setSelected(r)} style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', cursor: 'pointer', background: selected?.id === r.id ? 'var(--bg-accent)' : 'transparent', transition: 'background 0.2s', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            filtered.map((r, index) => (
+              <div key={r.id} onClick={() => setSelected(r)} className={`animate-slideUp stagger-${(index % 10) + 1}`} style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-light)', cursor: 'pointer', background: selected?.id === r.id ? 'var(--bg-accent)' : 'transparent', transition: 'background 0.2s', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                     <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>{r.student_name || 'Student'}</span>

@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect } from 'react';
 
@@ -36,14 +37,14 @@ export default function SchedulePage() {
     setSchedules(prev => prev.filter(s => s.id !== id));
   };
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="animate-fadeIn">
       <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: 24 }}>Schedule</h2>
 
       {/* Add Slot */}
-      <div className="glass-card" style={{ padding: 24, marginBottom: 24 }}>
+      <div className="glass-card animate-slideUp stagger-1" style={{ padding: 24, marginBottom: 24 }}>
         <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 16 }}>Add Availability</h3>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'flex-end' }}>
           <div>
@@ -67,7 +68,7 @@ export default function SchedulePage() {
       </div>
 
       {/* Schedule Table */}
-      <div className="glass-card" style={{ padding: 0, overflow: 'hidden' }}>
+      <div className="glass-card animate-slideUp stagger-2" style={{ padding: 0, overflow: 'hidden' }}>
         {schedules.length === 0 ? (
           <div style={{ padding: 48, textAlign: 'center' }}>
             <div style={{ fontSize: '3rem', marginBottom: 16 }}>📅</div>
@@ -85,8 +86,8 @@ export default function SchedulePage() {
               </tr>
             </thead>
             <tbody>
-              {schedules.map(s => (
-                <tr key={s.id} style={{ borderBottom: '1px solid var(--border-light)' }}>
+              {schedules.map((s, index) => (
+                <tr key={s.id} className={`animate-slideUp stagger-${(index % 10) + 1}`} style={{ borderBottom: '1px solid var(--border-light)' }}>
                   <td style={{ padding: '12px 20px', fontWeight: 600, fontSize: '0.9rem' }}>{s.day}</td>
                   <td style={{ padding: '12px 20px', fontSize: '0.9rem' }}>{s.start_time}</td>
                   <td style={{ padding: '12px 20px', fontSize: '0.9rem' }}>{s.end_time}</td>

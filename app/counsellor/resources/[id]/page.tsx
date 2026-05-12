@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useState, useEffect, use } from 'react';
 import Link from 'next/link';
 import { extractVideoId, getEmbedUrl, getThumbnailUrl } from '@/lib/youtube';
@@ -17,7 +18,7 @@ export default function CounsellorResourceViewPage({ params }: { params: Promise
     fetch('/api/resources').then(r => r.json()).then(d => setRelated((d.resources || []).filter((r: Resource) => r.id !== id).slice(0, 5)));
   }, [id]);
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
   if (!resource) return <div style={{ textAlign: 'center', padding: 48 }}><h3>Resource not found</h3></div>;
 
   const videoId = resource.youtube_url ? extractVideoId(resource.youtube_url) : null;

@@ -1,5 +1,6 @@
 'use client';
 
+import Loader from '@/components/Loader';
 import { useAuth } from '@/components/providers/AuthProvider';
 import { useState, useEffect } from 'react';
 
@@ -21,7 +22,7 @@ export default function CounsellorNotificationsPage() {
     setNotifications(prev => prev.map(n => ids.includes(n.id) ? { ...n, is_read: true } : n));
   };
 
-  if (loading) return <div className="loading-container"><div className="loading-spinner" /></div>;
+  if (loading) return <Loader />;
 
   return (
     <div className="animate-fadeIn">
